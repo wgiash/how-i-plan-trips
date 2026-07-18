@@ -163,6 +163,14 @@ body {
   background: color(display-p3 0.075 0.075 0.075);
 }
 
+/* ---------- tablet: 24px gutters ---------- */
+
+@media (max-width: 1024px) {
+  .page {
+    --gutter: 24px;
+  }
+}
+
 /* ---------- mobile: 16px gutters ---------- */
 
 @media (max-width: 640px) {

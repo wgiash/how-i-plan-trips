@@ -345,9 +345,16 @@ export default function App() {
     onChange()
     mq.addEventListener('change', onChange)
     window.addEventListener('resize', onChange)
+    // window.resize doesn't always fire in embedded/preview contexts;
+    // ResizeObserver on the root element always does
+    const ro = new ResizeObserver(onChange)
+    ro.observe(document.documentElement)
+    window.visualViewport?.addEventListener('resize', onChange)
     return () => {
       mq.removeEventListener('change', onChange)
       window.removeEventListener('resize', onChange)
+      window.visualViewport?.removeEventListener('resize', onChange)
+      ro.disconnect()
     }
   }, [])
 
@@ -372,13 +379,20 @@ export default function App() {
   const raw = useTransform(scrollY, [10, 80], [0, 1])
   const p = useSpring(raw, { stiffness: 380, damping: 36, mass: 0.5 })
 
-  const h1Size = useTransform(p, [0, 1], isMobile ? ['38px', '24px'] : ['54px', '32px'])
-  const h1Line = useTransform(p, [0, 1], isMobile ? ['42px', '30px'] : ['58px', '38px'])
-  // Explicit title line break: on mobile the expanded title is two lines and
-  // the condensed one line. Flip the break at a fixed early point of the morph
-  // instead of letting the shrinking width re-wrap mid-animation.
-  // below ~800px viewport the expanded title can't fit one line
-  const needsBreak = vw < 800
+  // Fluid expanded title: shrink toward the largest size that still fits one
+  // line at this viewport (≈11px of line width per px of font size), capped at
+  // the design size. Only if even 28px can't fit does the two-line break kick in.
+  // gutters: 16 mobile / 24 tablet / 96 desktop (mirrors the CSS --gutter)
+  const gutter = vw <= 640 ? 16 : vw <= 1024 ? 24 : 96
+  const contentW = vw - 2 * gutter
+  const fitSize = Math.floor(contentW / 11)
+  const expandedH1 = Math.min(isMobile ? 38 : 54, Math.max(28, fitSize))
+  const h1Size = useTransform(p, [0, 1], [`${expandedH1}px`, isMobile ? '24px' : '32px'])
+  const h1Line = useTransform(p, [0, 1], [`${Math.round(expandedH1 * 1.075)}px`, isMobile ? '30px' : '38px'])
+  // Explicit title line break, only for viewports too narrow even at 28px.
+  // Flipped at a fixed point of the morph instead of letting width re-wrap
+  // mid-animation.
+  const needsBreak = fitSize < 28
   // flip at 0.7: on expansion the break lands while the growing single line
   // still fits (~28px), well before the text would hit the edge
   const [twoLine, setTwoLine] = useState(false)
@@ -396,7 +410,6 @@ export default function App() {
   // Expand the bar to the full viewport width as it condenses. The page column
   // is 803px centered, so the extra reach per side is (vw - 803) / 2; matching
   // padding keeps the content aligned with the column.
-  const gutter = isMobile ? 16 : 96
   const sideExtra = Math.max(0, (vw - 803) / 2)
   const heroMarginInline = useTransform(p, [0, 1], [`-${gutter}px`, `-${gutter + sideExtra}px`])
   const heroPaddingInline = useTransform(p, [0, 1], [`${gutter}px`, `${gutter + sideExtra}px`])
