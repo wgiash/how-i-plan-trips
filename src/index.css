@@ -1,0 +1,217 @@
+/* Fonts — exact family names used by the Paper export, served locally */
+@font-face {
+  font-family: 'TWKLausannePan-400';
+  src: url('/fonts/TWKLausannePan-400.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TWKLausannePan-500';
+  src: url('/fonts/TWKLausannePan-500.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TWK Lausanne Pan';
+  src: url('/fonts/TWKLausannePan-400.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TWK Lausanne Pan';
+  src: url('/fonts/TWKLausannePan-500.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TWK Lausanne Pan';
+  src: url('/fonts/TWKLausannePan-600.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* scroll-behavior: smooth removed — Lenis drives smooth scrolling now */
+  /* the condensing header changes document height; scroll anchoring would
+     auto-compensate scrollY and feedback-loop the snap (bouncing header) */
+  overflow-anchor: none;
+}
+
+/* the page must never scroll horizontally (the chips scroller handles its own
+   overflow); also stops scrollIntoView from shifting the window sideways */
+html,
+body {
+  overflow-x: clip;
+}
+
+body {
+  /* Artboard root background: color(display-p3 0.056 0.056 0.056) */
+  background: #0e0e0e;
+  background: color(display-p3 0.056 0.056 0.056);
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Artboard root: 803px wide, padding 80 / 96 / 88 */
+.page {
+  --photo-scale: 1.25;
+  --gutter: 96px;
+  width: 803px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 80px var(--gutter) 88px;
+}
+
+/* Hero: sticky; condense is scroll-linked via framer-motion (inline motion values).
+   alignItems end; children stretch themselves, the logo group doesn't. */
+/* The spacer holds the hero's expanded height in layout permanently, so the
+   condense never changes document height (that height change was the source
+   of the scroll jitter). The hero itself floats fixed above the content. */
+.hero {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(14, 14, 14, 0.6);
+  background: color(display-p3 0.056 0.056 0.056 / 0.6);
+  -webkit-backdrop-filter: blur(64px);
+  backdrop-filter: blur(64px);
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 18px;
+  padding-bottom: 52px;
+  border-bottom: 1px solid #363636;
+  /* bleed across the page gutters so content never peeks out beside the bar */
+  margin-inline: calc(-1 * var(--gutter));
+  padding-inline: var(--gutter);
+}
+
+.h1 {
+  font-size: 54px;
+  line-height: 58px;
+}
+
+.h2 {
+  font-size: 34px;
+  line-height: 40px;
+}
+
+/* Chips (tabs) */
+.chip {
+  transition: border-color 0.2s;
+}
+
+.chip:hover {
+  border-color: #4a4a4a !important;
+}
+
+.chip .chip-label {
+  transition: color 0.2s;
+}
+
+.chip:hover .chip-label {
+  color: #dadada;
+}
+
+.chip:focus-visible {
+  outline: 1px solid #777777;
+  outline-offset: 2px;
+}
+
+/* Photos: exact px at desktop; shrink proportionally when the row overflows */
+.photo {
+  flex-shrink: 1;
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Superscript + source links */
+.sup {
+  transition: color 0.2s;
+}
+
+.sup:hover {
+  color: #f2f0ef !important;
+}
+
+.source-link {
+  transition: color 0.2s;
+}
+
+.source-link:hover {
+  color: #f2f0ef;
+}
+
+/* Drive stat cells */
+.stat {
+  padding-block: 22px;
+  padding-inline: 24px;
+  transition: background 0.25s;
+}
+
+.stat:hover {
+  background: color(display-p3 0.075 0.075 0.075);
+}
+
+/* ---------- mobile: 16px gutters ---------- */
+
+@media (max-width: 640px) {
+  .page {
+    --gutter: 16px;
+    padding: 48px var(--gutter) 64px;
+  }
+
+  .h1 {
+    font-size: 38px;
+    line-height: 42px;
+  }
+
+  .h2 {
+    font-size: 27px;
+    line-height: 33px;
+  }
+
+  .chips {
+    flex-wrap: nowrap;
+    gap: 8px !important;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    /* bleed to the screen edges so chips scroll past the gutter, not clip at it */
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    align-self: stretch;
+  }
+
+  .chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chips .chip {
+    flex-shrink: 0;
+  }
+
+  .chips .chip-label {
+    white-space: nowrap;
+  }
+
+  .stat {
+    padding-block: 16px;
+    padding-inline: 18px;
+  }
+
+  .stat > div:last-child {
+    font-size: 20px !important;
+    line-height: 26px !important;
+  }
+}
