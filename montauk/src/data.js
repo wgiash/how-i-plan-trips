@@ -10,7 +10,7 @@ export const PLAN = {
   kicker: 'SATURDAY · AUGUST 1',
   title: 'Montauk Trip 𓆉 ❀⋆.ೃ࿔*',
   tagline: 'Meet at Grand Central, train to the end of the island, everything on foot.',
-  desc: 'Day trip to the end of Long Island. Everyone meets at Grand Central, change at Jamaica, one train out. Lighthouse first, then lunch in the village, the beach in the afternoon, and dinner back in the village before the train home.',
+  desc: 'Day trip to the end of Long Island. Everyone meets at Grand Central, change at Jamaica, one train out. Lighthouse first, then lunch in the village, the beach in the afternoon, and the 5:15 train home. Dinner on the train or back in the city.',
   transit: [
     { label: 'GRAND CENTRAL → MONTAUK', value: '~3h 20m', maps: 'https://www.google.com/maps/dir/?api=1&origin=Grand+Central+Terminal,+New+York,+NY&destination=Montauk+Station,+Montauk,+NY&travelmode=transit' },
     { label: 'CHANGE AT JAMAICA', value: '~35m in', maps: 'https://www.google.com/maps/dir/?api=1&origin=Grand+Central+Terminal,+New+York,+NY&destination=Jamaica+Station,+Queens,+NY&travelmode=transit' },
@@ -30,22 +30,22 @@ export const PLAN = {
     },
     {
       name: 'Ditch Plains',
-      time: '12:30 to 5:00',
+      time: '12:30 to 4:15',
       bullets: [
         'Uber back from the lighthouse to the village for lunch: 668 The Gig Shack (surf food and live music, opens noon). Backups: Tacombi La Brisa, John’s Drive-In, Goldberg’s Bagels.',
         'After lunch walk out to Ditch Plains (~35 min): the surfy, casual beach with the good people-watching.',
         'The Ditch Witch truck is right on the sand for iced coffee and snacks.',
-        'Beach afternoon. Swim, nap, watch the surfers. Leave the sand by 5.',
+        'Beach afternoon. Swim, nap, watch the surfers. Leave the sand by 4:15.',
       ],
       photos: { kind: 'stack4', align: 'left' },
     },
     {
       name: 'Town',
-      time: 'from 5:45',
+      time: '4:15 to 5:15',
       bullets: [
-        'Leave the beach at 5, walk back in (~35 min), dinner around 5:45.',
-        'Dinner, all walkable: Shagwong Tavern (old-school classic), Harvest on Fort Pond (bay side, sunset tables, book ahead), Bird on the Roof (cozy, cocktail bar, dinner 5:30 to 9:30), Sel Rrose (oysters and cocktails), or South Edison (local seafood).',
-        'If there is time before the train, the bay side faces west for sunset. Then the evening train home.',
+        'Leave the sand by 4:15 and walk back through town toward the station (~40 min all in).',
+        "No sit-down dinner this trip: the kitchens open around 5:30, after the train. Grab takeout for the ride (Goldberg's, pizza slices) and eat on board.",
+        'Be at the station by 5 for the 5:15; Grand Central around 8:35. If the plan ever slips to the last train, the walkable dinner list: Shagwong Tavern, Harvest on Fort Pond (book ahead), Bird on the Roof, Sel Rrose, South Edison.',
       ],
       photos: { kind: 'pair', align: 'right' },
     },
@@ -54,7 +54,7 @@ export const PLAN = {
     label: 'GOOD TO KNOW',
     lines: [
       'One through-ticket, roughly $23 each way off-peak. Buy ahead in TrainTime; summer Saturday trains get crowded.',
-      'The last train back is the hard deadline for dinner, so confirm it that morning.',
+      'The 5:15 back is the hard out: be at the station by 5, and confirm the exact time in TrainTime that morning.',
       'Ubers get scarce and surge on August weekends. Expect a short wait and save a local cab number as backup.',
     ],
   },
