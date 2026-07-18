@@ -32,14 +32,36 @@ const TITLE_TEXT = 'Montauk Trip 𓆉 ❀⋆.ೃ࿔*'
 
 // ---------- atoms ----------
 
-function Bullet({ children }) {
+// A bullet is a string, or an array of parts where a part is either a string or
+// { biz, n } — a named business followed by a superscript ref number.
+function renderBullet(content) {
+  if (typeof content === 'string') return content
+  return content.map((seg, i) =>
+    typeof seg === 'string' ? (
+      <span key={i}>{seg}</span>
+    ) : (
+      <span key={i} style={{ whiteSpace: 'nowrap' }}>
+        {seg.biz}
+        <a
+          className="sup"
+          href="#sources"
+          style={{ color: '#948B77', fontFamily: L500, fontSize: '0.7em', fontWeight: 500, verticalAlign: 'super', marginLeft: '1px', textDecoration: 'none' }}
+        >
+          {seg.n}
+        </a>
+      </span>
+    ),
+  )
+}
+
+function Bullet({ content }) {
   return (
     <div style={{ alignSelf: 'stretch', display: 'flex', gap: '12px' }}>
       <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '9px', width: '14px', flexShrink: 0 }}>
         <div style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#948B77', flexShrink: 0 }} />
       </div>
       <div style={{ color: '#443E33', fontFamily: L400, fontSize: '16px', lineHeight: '26px', flexBasis: '0%', flexGrow: 1 }}>
-        {children}
+        {renderBullet(content)}
       </div>
     </div>
   )
@@ -90,8 +112,8 @@ function Stop({ stop }) {
           {stop.time}
         </div>
       </div>
-      {stop.bullets.map((b) => (
-        <Bullet key={b.slice(0, 24)}>{b}</Bullet>
+      {stop.bullets.map((b, i) => (
+        <Bullet key={i} content={b} />
       ))}
       {stop.photoRows?.map((row) => (
         <PhotoRow key={row.caption} row={row} />
@@ -249,8 +271,6 @@ export default function App() {
 
   const collapseMaxH = useTransform(p, [0, 1], ['80px', '0px'])
   const collapseOpacity = useTransform(p, [0, 0.55], [1, 0])
-  // grain fades in as the bar condenses (nothing to frost at the very top)
-  const grainOpacity = useTransform(p, [0.15, 0.85], [0, 1])
   const heroGap = useTransform(p, [0, 1], ['18px', '8px'])
   const heroPadTop = useTransform(p, [0, 1], ['0px', '14px'])
   const heroPadBottom = useTransform(p, [0, 1], ['52px', '16px'])
@@ -279,7 +299,6 @@ export default function App() {
         animate="show"
         style={{ gap: heroGap, paddingTop: heroPadTop, paddingBottom: heroPadBottom, marginInline: heroMarginInline, paddingInline: heroPaddingInline }}
       >
-        <motion.div className="hero-grain" aria-hidden="true" style={{ opacity: grainOpacity }} />
         <motion.div variants={fadeUp}>
           <motion.div className="logo" style={{ maxHeight: collapseMaxH, opacity: collapseOpacity, overflow: 'hidden', alignItems: 'start', display: 'flex', flexDirection: 'column', gap: '8px', justifyContent: 'center' }}>
             <Wordmark />

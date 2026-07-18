@@ -16,6 +16,18 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.1, 0, 0.1, 1] } },
 }
 
+// The option blocks cascade in one at a time, starting just after the hero so it
+// reads as a continuous top-down flow (matches the Montauk app's load feel).
+const sectionStagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.11, delayChildren: 0.32 } },
+}
+
+const rise = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.1, 0, 0.1, 1] } },
+}
+
 const spring = { type: 'spring', stiffness: 400, damping: 34 }
 
 // ---------- atoms ----------
@@ -98,7 +110,7 @@ function Stop({ stop, optionId }) {
   if (!stop.nested) {
     // Flat stop (B's Cold Spring, Millbrook): one column, gap 16.
     return (
-      <motion.div variants={fadeUp} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <motion.div variants={rise} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         <StopHeading stop={stop} optionId={optionId} />
         {stop.bullets.map((b) => (
           <Bullet key={b.slice(0, 24)}>{b}</Bullet>
@@ -107,7 +119,7 @@ function Stop({ stop, optionId }) {
     )
   }
   return (
-    <motion.div variants={fadeUp} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+    <motion.div variants={rise} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
       <div style={{ alignItems: 'start', display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '100%' }}>
         <StopHeading stop={stop} optionId={optionId} />
         <div
@@ -167,7 +179,7 @@ function DriveStats({ drive }) {
     { borderLeft: border },
   ]
   return (
-    <motion.div variants={fadeUp} style={{ border, display: 'grid', gridTemplateColumns: '1fr 1fr', gridAutoRows: '1fr', alignSelf: 'stretch' }}>
+    <motion.div variants={rise} style={{ border, display: 'grid', gridTemplateColumns: '1fr 1fr', gridAutoRows: '1fr', alignSelf: 'stretch' }}>
       {drive.map((d, i) => (
         <a
           key={d.label}
@@ -189,7 +201,7 @@ function DriveStats({ drive }) {
 function Callout({ callout }) {
   return (
     <motion.div
-      variants={fadeUp}
+      variants={rise}
       style={{
         alignItems: 'center',
         backgroundImage: 'linear-gradient(in oklab 180deg, oklab(17.8% 0 0) 0%, oklab(0% 0 0 / 0%) 100%)',
@@ -403,8 +415,6 @@ export default function App() {
 
   const collapseMaxH = useTransform(p, [0, 1], ['80px', '0px'])
   const collapseOpacity = useTransform(p, [0, 0.55], [1, 0])
-  // grain fades in as the bar condenses (nothing to frost at the very top)
-  const grainOpacity = useTransform(p, [0.15, 0.85], [0, 1])
   const heroGap = useTransform(p, [0, 1], ['18px', '8px'])
   const heroPadTop = useTransform(p, [0, 1], ['0px', '14px'])
   const heroPadBottom = useTransform(p, [0, 1], ['52px', '16px'])
@@ -428,7 +438,6 @@ export default function App() {
         animate="show"
         style={{ gap: heroGap, paddingTop: heroPadTop, paddingBottom: heroPadBottom, marginInline: heroMarginInline, paddingInline: heroPaddingInline }}
       >
-        <motion.div className="hero-grain" aria-hidden="true" style={{ opacity: grainOpacity }} />
         <motion.div variants={fadeUp}>
           <motion.div className="logo" style={{ maxHeight: collapseMaxH, opacity: collapseOpacity, overflow: 'hidden', alignItems: 'start', display: 'flex', flexDirection: 'column', gap: '8px', justifyContent: 'center' }}>
             <Wordmark />
@@ -487,7 +496,8 @@ export default function App() {
           exit={{ opacity: 0, y: -8, transition: { duration: 0.18 } }}
           style={{ display: 'flex', flexDirection: 'column', alignSelf: 'stretch' }}
         >
-        <section
+        <motion.section
+          variants={sectionStagger}
           style={{
             borderBottom: '1px solid #363636',
             display: 'flex',
@@ -498,7 +508,7 @@ export default function App() {
             alignSelf: 'stretch',
           }}
         >
-          <motion.div variants={fadeUp} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <motion.div variants={rise} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             <div style={{ color: '#F2F0EF', fontFamily: L500, fontSize: '13px', fontWeight: 500, lineHeight: '16px', letterSpacing: option.labelLetterSpacing ?? undefined }}>
               {option.label}
             </div>
@@ -517,9 +527,9 @@ export default function App() {
           ))}
 
           <Callout callout={option.callout} />
-        </section>
+        </motion.section>
 
-        <motion.div variants={fadeUp}>
+        <motion.div variants={rise}>
           <Sources option={option} />
         </motion.div>
         </motion.div>

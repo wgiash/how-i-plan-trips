@@ -81,12 +81,23 @@ export const PLAN = {
     },
     {
       name: 'Montauk Village',
-      sup: '4',
       time: '3:30 to 5:15',
       bullets: [
         'Leave the sand by 3:30 and wander back through the village: almost two hours for the shops before the train.',
-        "Quick browses on the way: White's Drug and Department Store (the Main Street classic), Homeport (books and local goods), Whalebone (soft tees, near the station end).",
-        'Grab snacks for the ride at Montauk Bake Shoppe (the jelly croissants).',
+        [
+          'Quick browses on the way: ',
+          { biz: "White's Drug and Department Store", n: '4' },
+          ' (the Main Street classic), ',
+          { biz: 'Homeport', n: '5' },
+          ' (books and local goods), ',
+          { biz: 'Whalebone', n: '6' },
+          ' (soft tees, near the station end).',
+        ],
+        [
+          'Grab snacks for the ride at ',
+          { biz: 'Montauk Bake Shoppe', n: '7' },
+          ' (the jelly croissants).',
+        ],
         'Be at the station by 5 for the 5:15; Grand Central around 8:35.',
       ],
       photoRows: [
@@ -118,10 +129,13 @@ export const PLAN = {
     ],
   },
   sources: [
-    { n: '1', text: 'Montauk Point — montaukhistoricalsociety.org', url: 'https://montaukhistoricalsociety.org/montauk-point-lighthouse/' },
-    { n: '2', text: 'Lunch — 668thegigshack.com', url: 'https://668thegigshack.com/' },
-    { n: '3', text: 'Kirk Park Beach — visitmontauk.org', url: 'https://visitmontauk.org/' },
-    { n: '4', text: 'Montauk Village — visitmontauk.org', url: 'https://visitmontauk.org/' },
+    { n: '1', text: '668 The Gig Shack', url: 'https://www.google.com/maps/search/?api=1&query=668+The+Gig+Shack+Montauk+NY' },
+    { n: '2', text: "John's Drive-In", url: 'https://www.google.com/maps/search/?api=1&query=John%27s+Drive-In+Montauk+NY' },
+    { n: '3', text: "Goldberg's Bagels", url: 'https://www.google.com/maps/search/?api=1&query=Goldberg%27s+Famous+Bagels+Montauk+NY' },
+    { n: '4', text: "White's Drug & Dept. Store", url: 'https://www.google.com/maps/search/?api=1&query=White%27s+Drug+%26+Department+Store+Montauk+NY' },
+    { n: '5', text: 'Homeport', url: 'https://www.google.com/maps/search/?api=1&query=Homeport+Montauk+NY' },
+    { n: '6', text: 'Whalebone', url: 'https://www.google.com/maps/search/?api=1&query=Whalebone+Montauk+NY' },
+    { n: '7', text: 'Montauk Bake Shoppe', url: 'https://www.google.com/maps/search/?api=1&query=Montauk+Bake+Shoppe+Montauk+NY' },
   ],
 }
 
