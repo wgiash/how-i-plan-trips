@@ -410,9 +410,11 @@ export default function App() {
   // Expand the bar to the full viewport width as it condenses. The page column
   // is 803px centered, so the extra reach per side is (vw - 803) / 2; matching
   // padding keeps the content aligned with the column.
-  const sideExtra = Math.max(0, (vw - 803) / 2)
-  const heroMarginInline = useTransform(p, [0, 1], [`-${gutter}px`, `-${gutter + sideExtra}px`])
-  const heroPaddingInline = useTransform(p, [0, 1], [`${gutter}px`, `${gutter + sideExtra}px`])
+  // Pure CSS-calc expansion: --gutter comes from the stylesheet cascade and the
+  // viewport term from 100vw, so no React state can ever be stale mid-scroll
+  // (stale vw/gutter was why the chips sometimes lost their side margins).
+  const heroMarginInline = useTransform(p, (v) => `calc(-1 * var(--gutter) - ${v.toFixed(4)} * ((100vw - min(100vw, 803px)) / 2))`)
+  const heroPaddingInline = useTransform(p, (v) => `calc(var(--gutter) + ${v.toFixed(4)} * ((100vw - min(100vw, 803px)) / 2))`)
 
   return (
     <div className="page">

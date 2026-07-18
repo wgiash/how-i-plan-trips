@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'framer-motion'
 import Lenis from 'lenis'
 import Wordmark from './Wordmark'
@@ -16,8 +16,7 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.1, 0, 0.1, 1] } },
 }
 
-// title width ≈ RATIO px of line per px of font size ("Montauk Trip 𓆉 ❀⋆.ೃ࿔*")
-const TITLE_RATIO = 9.2
+const TITLE_TEXT = 'Montauk Trip 𓆉 ❀⋆.ೃ࿔*'
 
 // ---------- atoms ----------
 
@@ -171,9 +170,23 @@ export default function App() {
   const raw = useTransform(scrollY, [10, 80], [0, 1])
   const p = useSpring(raw, { stiffness: 380, damping: 36, mass: 0.5 })
 
+  // Measure the real rendered title width (the ornament glyphs are much wider
+  // than any per-character estimate) at a 100px reference size; ratio = px of
+  // line per px of font size. Re-measured once fonts finish loading.
+  const [titleRatio, setTitleRatio] = useState(9.2)
+  const measRef = useRef(null)
+  useEffect(() => {
+    const measure = () => {
+      if (measRef.current) setTitleRatio(measRef.current.offsetWidth / 100)
+    }
+    measure()
+    document.fonts?.ready?.then(measure)
+  }, [])
+
   const gutter = vw <= 640 ? 16 : vw <= 1024 ? 24 : 96
   const contentW = vw - 2 * gutter
-  const fitSize = Math.floor(contentW / TITLE_RATIO)
+  // small inset so the last glyph never kisses the edge
+  const fitSize = Math.floor((contentW - 10) / titleRatio)
   const expandedH1 = Math.min(isMobile ? 38 : 54, Math.max(28, fitSize))
   const h1Size = useTransform(p, [0, 1], [`${expandedH1}px`, isMobile ? '24px' : '32px'])
   const h1Line = useTransform(p, [0, 1], [`${Math.round(expandedH1 * 1.075)}px`, isMobile ? '30px' : '38px'])
@@ -190,14 +203,23 @@ export default function App() {
   const heroPadTop = useTransform(p, [0, 1], ['0px', '14px'])
   const heroPadBottom = useTransform(p, [0, 1], ['52px', '16px'])
 
-  const sideExtra = Math.max(0, (vw - 803) / 2)
-  const heroMarginInline = useTransform(p, [0, 1], [`-${gutter}px`, `-${gutter + sideExtra}px`])
-  const heroPaddingInline = useTransform(p, [0, 1], [`${gutter}px`, `${gutter + sideExtra}px`])
+  // Pure CSS-calc expansion: --gutter comes from the stylesheet cascade and the
+  // viewport term from 100vw, so no React state can ever be stale mid-scroll.
+  const heroMarginInline = useTransform(p, (v) => `calc(-1 * var(--gutter) - ${v.toFixed(4)} * ((100vw - min(100vw, 803px)) / 2))`)
+  const heroPaddingInline = useTransform(p, (v) => `calc(var(--gutter) + ${v.toFixed(4)} * ((100vw - min(100vw, 803px)) / 2))`)
 
   const spring = { type: 'spring', stiffness: 400, damping: 34 }
 
   return (
     <div className="page">
+      {/* offscreen measurer for the title's true rendered width */}
+      <div
+        ref={measRef}
+        aria-hidden="true"
+        style={{ position: 'absolute', left: '-99999px', top: 0, visibility: 'hidden', pointerEvents: 'none', whiteSpace: 'nowrap', fontFamily: L500, fontWeight: 500, fontSize: '100px', letterSpacing: '-0.02em' }}
+      >
+        {TITLE_TEXT}
+      </div>
       <motion.header
         className="hero"
         variants={stagger}
@@ -256,7 +278,7 @@ export default function App() {
           display: 'flex',
           flexDirection: 'column',
           gap: '36px',
-          paddingTop: '76px',
+          paddingTop: '52px',
           paddingBottom: '52px',
           alignSelf: 'stretch',
         }}
