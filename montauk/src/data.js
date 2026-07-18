@@ -19,7 +19,7 @@ export const PLAN = {
   ],
   stops: [
     {
-      name: 'Montauk Point Lighthouse',
+      name: 'Montauk Point',
       time: '10:30 to 12:00',
       bullets: [
         'The 6:48 from Grand Central gets in around 10:15. Uber straight from the station to the Point (~15 min); the lighthouse is 5.6 miles east of town, the one leg that is not walkable.',
@@ -29,17 +29,24 @@ export const PLAN = {
       photos: { kind: 'pair', align: 'right' },
     },
     {
-      name: 'Kirk Park Beach',
-      time: '12:30 to 4:00',
+      name: 'Lunch',
+      time: '12:30 to 1:45',
       bullets: [
-        'Uber back from the lighthouse to the village for lunch: 668 The Gig Shack (surf food and live music, opens noon). Backups: Tacombi La Brisa, John’s Drive-In, Goldberg’s Bagels.',
+        "Uber back from the lighthouse to the village: 668 The Gig Shack (surf food and live music, opens noon). Backups: Tacombi La Brisa, John's Drive-In, Goldberg's Bagels.",
+      ],
+      photos: { kind: 'pair', align: 'left' },
+    },
+    {
+      name: 'Kirk Park Beach',
+      time: '2:00 to 4:00',
+      bullets: [
         'The beach is right there: Kirk Park, a 3 minute walk from lunch across Montauk Highway. Wide sand, lifeguards, restrooms.',
         'Beach afternoon. Swim, nap. Two hours on the sand; leave by 4.',
       ],
-      photos: { kind: 'stack4', align: 'left' },
+      photos: { kind: 'pair', align: 'right' },
     },
     {
-      name: 'Town',
+      name: 'Montauk Village',
       time: '4:00 to 5:15',
       bullets: [
         'Leave the sand by 4 and wander back through the village: a full hour for the shops before the train.',
