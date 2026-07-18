@@ -43,7 +43,8 @@ export const PLAN = {
       time: '4:30 to 5:15',
       bullets: [
         'Leave the sand by 4:30 and walk back through the village to the station (~20 min).',
-        'Grab snacks for the ride on the way through town.',
+        "Quick browses on the way: White's Drug and Department Store (the Main Street classic), Homeport (books and local goods), Whalebone (soft tees, near the station end).",
+        'Grab snacks for the ride at Montauk Bake Shoppe (the jelly croissants).',
         'Be at the station by 5 for the 5:15; Grand Central around 8:35.',
       ],
       photos: { kind: 'pair', align: 'right' },
