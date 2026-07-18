@@ -20,9 +20,9 @@ export const PLAN = {
   stops: [
     {
       name: 'Montauk Point Lighthouse',
-      time: 'late morning',
+      time: '10:30 to 12:00',
       bullets: [
-        'Uber straight from the station when the train gets in (~15 min). The lighthouse is 5.6 miles east of town, the one leg that is not walkable.',
+        'The 6:48 from Grand Central gets in around 10:15. Uber straight from the station to the Point (~15 min); the lighthouse is 5.6 miles east of town, the one leg that is not walkable.',
         'Oldest lighthouse in New York State (1796), commissioned under George Washington. Climb it, walk the bluffs, watch the surf at the Point.',
         'Admission about $15. Give it about 1.5h including the views.',
       ],
@@ -30,20 +30,20 @@ export const PLAN = {
     },
     {
       name: 'Ditch Plains',
-      time: 'lunch + beach, afternoon',
+      time: '12:30 to 5:00',
       bullets: [
         'Uber back from the lighthouse to the village for lunch: 668 The Gig Shack (surf food and live music, opens noon). Backups: Tacombi La Brisa, John’s Drive-In, Goldberg’s Bagels.',
         'After lunch walk out to Ditch Plains (~35 min): the surfy, casual beach with the good people-watching.',
         'The Ditch Witch truck is right on the sand for iced coffee and snacks.',
-        'Beach afternoon. Swim, nap, watch the surfers.',
+        'Beach afternoon. Swim, nap, watch the surfers. Leave the sand by 5.',
       ],
       photos: { kind: 'stack4', align: 'left' },
     },
     {
       name: 'Town',
-      time: 'evening',
+      time: 'from 5:45',
       bullets: [
-        'Walk into town (~35 min) around 5:30 or 6.',
+        'Leave the beach at 5, walk back in (~35 min), dinner around 5:45.',
         'Dinner, all walkable: Shagwong Tavern (old-school classic), Harvest on Fort Pond (bay side, sunset tables, book ahead), Bird on the Roof (cozy, cocktail bar, dinner 5:30 to 9:30), Sel Rrose (oysters and cocktails), or South Edison (local seafood).',
         'If there is time before the train, the bay side faces west for sunset. Then the evening train home.',
       ],
