@@ -34,6 +34,7 @@ export const PLAN = {
       bullets: [
         'Uber back toward town, get off at Ditch Plains: the surfy, casual beach with the good people-watching.',
         'Lunch at the Ditch Witch, the food truck right on the beach. Eat on the sand.',
+        "More lunch picks in town: La Brisa (tacos on the plaza), John's Drive-In (burgers and shakes), Goldberg's Bagels.",
         'Beach afternoon. Swim, nap, watch the surfers.',
       ],
       photos: { kind: 'stack4', align: 'left' },
@@ -43,7 +44,7 @@ export const PLAN = {
       time: 'evening',
       bullets: [
         'Walk into town (~35 min) around 5:30 or 6.',
-        'Browse the shops, then dinner. Lobster rolls and clam-bar style spots; pick whatever the group likes.',
+        'Dinner, all walkable: Shagwong Tavern (old-school classic), Harvest on Fort Pond (bay side, sunset tables, book ahead), Sel Rrose (oysters and cocktails), or South Edison (local seafood).',
         'If there is time before the train, the bay side faces west for sunset. Then the evening train home.',
       ],
       photos: { kind: 'pair', align: 'right' },
