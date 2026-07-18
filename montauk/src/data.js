@@ -10,7 +10,7 @@ export const PLAN = {
   kicker: 'SATURDAY · AUGUST 1',
   title: 'Montauk Trip 𓆉 ❀⋆.ೃ࿔*',
   tagline: 'Meet at Grand Central, train to the end of the island, everything on foot.',
-  desc: 'Day trip to the end of Long Island. Everyone meets at Grand Central, change at Jamaica, one train out. Lighthouse first, then the beach with lunch on the sand, then dinner in town before the train home.',
+  desc: 'Day trip to the end of Long Island. Everyone meets at Grand Central, change at Jamaica, one train out. Lighthouse first, then lunch in the village, the beach in the afternoon, and dinner back in the village before the train home.',
   transit: [
     { label: 'GRAND CENTRAL → MONTAUK', value: '~3h 20m', maps: 'https://www.google.com/maps/dir/?api=1&origin=Grand+Central+Terminal,+New+York,+NY&destination=Montauk+Station,+Montauk,+NY&travelmode=transit' },
     { label: 'CHANGE AT JAMAICA', value: '~35m in', maps: 'https://www.google.com/maps/dir/?api=1&origin=Grand+Central+Terminal,+New+York,+NY&destination=Jamaica+Station,+Queens,+NY&travelmode=transit' },
@@ -30,11 +30,11 @@ export const PLAN = {
     },
     {
       name: 'Ditch Plains',
-      time: 'beach + lunch, afternoon',
+      time: 'lunch + beach, afternoon',
       bullets: [
-        'Uber back toward town, get off at Ditch Plains: the surfy, casual beach with the good people-watching.',
-        'Lunch at the Ditch Witch, the food truck right on the beach. Eat on the sand.',
-        "More lunch picks in town: 668 The Gig Shack (surf food and live music, opens noon), Tacombi La Brisa (tacos on the plaza), John's Drive-In (burgers and shakes), Goldberg's Bagels.",
+        'Uber back from the lighthouse to the village for lunch: 668 The Gig Shack (surf food and live music, opens noon). Backups: Tacombi La Brisa, John’s Drive-In, Goldberg’s Bagels.',
+        'After lunch walk out to Ditch Plains (~35 min): the surfy, casual beach with the good people-watching.',
+        'The Ditch Witch truck is right on the sand for iced coffee and snacks.',
         'Beach afternoon. Swim, nap, watch the surfers.',
       ],
       photos: { kind: 'stack4', align: 'left' },
