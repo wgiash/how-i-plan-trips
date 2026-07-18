@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'framer-motion'
 import Lenis from 'lenis'
 import Wordmark from './Wordmark'
@@ -152,7 +152,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    const lenis = new Lenis({ duration: 1.6, wheelMultiplier: 0.9, smoothWheel: true })
+    const lenis = new Lenis({ duration: 1.6, wheelMultiplier: 0.9 })
     let rafId
     const raf = (t) => {
       lenis.raf(t)
@@ -173,9 +173,11 @@ export default function App() {
   // Measure the real rendered title width (the ornament glyphs are much wider
   // than any per-character estimate) at a 100px reference size; ratio = px of
   // line per px of font size. Re-measured once fonts finish loading.
-  const [titleRatio, setTitleRatio] = useState(9.2)
+  const [titleRatio, setTitleRatio] = useState(10.6)
   const measRef = useRef(null)
-  useEffect(() => {
+  // useLayoutEffect: measure before first paint so the entrance animation
+  // starts at the final size instead of visibly resizing mid-load
+  useLayoutEffect(() => {
     const measure = () => {
       if (measRef.current) setTitleRatio(measRef.current.offsetWidth / 100)
     }

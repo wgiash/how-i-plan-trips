@@ -9,13 +9,13 @@ export const INTER = '"Inter", system-ui, sans-serif'
 export const PLAN = {
   kicker: 'SATURDAY · AUGUST 1',
   title: 'Montauk Trip 𓆉 ❀⋆.ೃ࿔*',
-  tagline: 'Meet at Jamaica, one train to the end of the island, everything on foot.',
-  desc: 'Day trip to the end of Long Island. Everyone meets at Jamaica station, one train out. Lighthouse first, then the beach with lunch on the sand, then dinner in town before the train home.',
+  tagline: 'Meet at Grand Central, train to the end of the island, everything on foot.',
+  desc: 'Day trip to the end of Long Island. Everyone meets at Grand Central, change at Jamaica, one train out. Lighthouse first, then the beach with lunch on the sand, then dinner in town before the train home.',
   transit: [
-    { label: 'JAMAICA → MONTAUK', value: '~2h 45m', maps: 'https://www.google.com/maps/dir/?api=1&origin=Jamaica+Station,+Queens,+NY&destination=Montauk+Station,+Montauk,+NY&travelmode=transit' },
-    { label: 'MANHATTAN → JAMAICA', value: '~35m', maps: 'https://www.google.com/maps/dir/?api=1&origin=Grand+Central+Terminal,+New+York,+NY&destination=Jamaica+Station,+Queens,+NY&travelmode=transit' },
-    { label: 'MONTAUK → JAMAICA', value: '~2h 45m', maps: 'https://www.google.com/maps/dir/?api=1&origin=Montauk+Station,+Montauk,+NY&destination=Jamaica+Station,+Queens,+NY&travelmode=transit' },
-    { label: 'ROUND TRIP ON TRAINS', value: '~5h 30m', em: true, maps: 'https://www.mta.info/schedules/lirr/montauk' },
+    { label: 'GRAND CENTRAL → MONTAUK', value: '~3h 20m', maps: 'https://www.google.com/maps/dir/?api=1&origin=Grand+Central+Terminal,+New+York,+NY&destination=Montauk+Station,+Montauk,+NY&travelmode=transit' },
+    { label: 'CHANGE AT JAMAICA', value: '~35m in', maps: 'https://www.google.com/maps/dir/?api=1&origin=Grand+Central+Terminal,+New+York,+NY&destination=Jamaica+Station,+Queens,+NY&travelmode=transit' },
+    { label: 'MONTAUK → GRAND CENTRAL', value: '~3h 20m', maps: 'https://www.google.com/maps/dir/?api=1&origin=Montauk+Station,+Montauk,+NY&destination=Grand+Central+Terminal,+New+York,+NY&travelmode=transit' },
+    { label: 'ROUND TRIP ON TRAINS', value: '~6h 30m', em: true, maps: 'https://www.mta.info/schedules/lirr/montauk' },
   ],
   stops: [
     {
@@ -52,7 +52,7 @@ export const PLAN = {
   callout: {
     label: 'GOOD TO KNOW',
     lines: [
-      'Jamaica to Montauk is roughly $20 each way off-peak. Buy ahead in TrainTime; summer Saturday trains get crowded.',
+      'One through-ticket, roughly $23 each way off-peak. Buy ahead in TrainTime; summer Saturday trains get crowded.',
       'The last train back is the hard deadline for dinner, so confirm it that morning.',
       'Ubers get scarce and surge on August weekends. Expect a short wait and save a local cab number as backup.',
     ],
