@@ -44,7 +44,7 @@ export const PLAN = {
       time: 'evening',
       bullets: [
         'Walk into town (~35 min) around 5:30 or 6.',
-        'Dinner, all walkable: Shagwong Tavern (old-school classic), Harvest on Fort Pond (bay side, sunset tables, book ahead), Sel Rrose (oysters and cocktails), or South Edison (local seafood).',
+        'Dinner, all walkable: Shagwong Tavern (old-school classic), Harvest on Fort Pond (bay side, sunset tables, book ahead), Bird on the Roof (cozy, cocktail bar, dinner 5:30 to 9:30), Sel Rrose (oysters and cocktails), or South Edison (local seafood).',
         'If there is time before the train, the bay side faces west for sunset. Then the evening train home.',
       ],
       photos: { kind: 'pair', align: 'right' },
