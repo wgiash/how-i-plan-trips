@@ -16,8 +16,8 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.1, 0, 0.1, 1] } },
 }
 
-// title width ≈ RATIO px of line per px of font size ("Montauk Trip")
-const TITLE_RATIO = 6.3
+// title width ≈ RATIO px of line per px of font size ("Montauk Trip 𓆉 ❀⋆.ೃ࿔*")
+const TITLE_RATIO = 9.2
 
 // ---------- atoms ----------
 
@@ -233,7 +233,7 @@ export default function App() {
               Montauk
             </motion.span>{' '}
             <motion.span layout transition={spring} style={{ display: twoLine ? 'block' : 'inline-block' }}>
-              Trip
+              Trip 𓆉 ❀⋆.ೃ࿔*
             </motion.span>
           </motion.h1>
         </motion.div>

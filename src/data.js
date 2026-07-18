@@ -35,9 +35,10 @@ export const OPTIONS = [
     labelLetterSpacing: null, // A's OPTION label has no letterSpacing
     activeChipColor: '#F2F0EF',
     title: 'Beacon + Cold Spring',
-    titleFont: { fontFamily: INTER, fontWeight: 700 }, // A: Inter 700
+    // hotfix: was Inter 700 from the 1:1 artboard export; unified to Lausanne 500
+    titleFont: { fontFamily: L500, fontWeight: 500 },
     desc: 'Two riverside towns, 15 minutes apart. Good food, a bit of art, and views of the river and mountains.',
-    descFont: { fontFamily: INTER },
+    descFont: { fontFamily: L400 },
     drive: [
       { label: 'NYC → BEACON', value: '1h 25m', maps: 'https://www.google.com/maps/dir/New+York,+NY/Beacon,+NY/' },
       { label: 'BEACON → COLD SPRING', value: '15m', maps: 'https://www.google.com/maps/dir/Beacon,+NY/Cold+Spring,+NY/' },
