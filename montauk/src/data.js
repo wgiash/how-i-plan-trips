@@ -34,7 +34,7 @@ export const PLAN = {
       bullets: [
         'Uber back toward town, get off at Ditch Plains: the surfy, casual beach with the good people-watching.',
         'Lunch at the Ditch Witch, the food truck right on the beach. Eat on the sand.',
-        "More lunch picks in town: Tacombi La Brisa (tacos on the plaza), John's Drive-In (burgers and shakes), Goldberg's Bagels.",
+        "More lunch picks in town: 668 The Gig Shack (surf food and live music, opens noon), Tacombi La Brisa (tacos on the plaza), John's Drive-In (burgers and shakes), Goldberg's Bagels.",
         'Beach afternoon. Swim, nap, watch the surfers.',
       ],
       photos: { kind: 'stack4', align: 'left' },
