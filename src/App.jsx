@@ -403,6 +403,8 @@ export default function App() {
 
   const collapseMaxH = useTransform(p, [0, 1], ['80px', '0px'])
   const collapseOpacity = useTransform(p, [0, 0.55], [1, 0])
+  // grain fades in as the bar condenses (nothing to frost at the very top)
+  const grainOpacity = useTransform(p, [0.15, 0.85], [0, 1])
   const heroGap = useTransform(p, [0, 1], ['18px', '8px'])
   const heroPadTop = useTransform(p, [0, 1], ['0px', '14px'])
   const heroPadBottom = useTransform(p, [0, 1], ['52px', '16px'])
@@ -426,6 +428,7 @@ export default function App() {
         animate="show"
         style={{ gap: heroGap, paddingTop: heroPadTop, paddingBottom: heroPadBottom, marginInline: heroMarginInline, paddingInline: heroPaddingInline }}
       >
+        <motion.div className="hero-grain" aria-hidden="true" style={{ opacity: grainOpacity }} />
         <motion.div variants={fadeUp}>
           <motion.div className="logo" style={{ maxHeight: collapseMaxH, opacity: collapseOpacity, overflow: 'hidden', alignItems: 'start', display: 'flex', flexDirection: 'column', gap: '8px', justifyContent: 'center' }}>
             <Wordmark />

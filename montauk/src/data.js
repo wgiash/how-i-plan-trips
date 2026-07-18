@@ -1,6 +1,5 @@
-// Montauk day trip — single plan, same design language as the roadtrip app.
-// Photo rows get wired in once the images are picked (pairs alternate
-// right → left; one left-aligned 4-stack for Ditch Plains).
+// Montauk day trip — ported 1:1 from the Paper canvas (light-mode app).
+// Photo rows: pairs alternate right → left; sizes/positions are canvas values.
 
 export const L500 = '"TWKLausannePan-500", "TWK Lausanne Pan", system-ui, sans-serif'
 export const L400 = '"TWKLausannePan-400", "TWK Lausanne Pan", system-ui, sans-serif'
@@ -9,7 +8,7 @@ export const INTER = '"Inter", system-ui, sans-serif'
 export const PLAN = {
   kicker: 'SATURDAY · AUGUST 1',
   title: 'Montauk Trip 𓆉 ❀⋆.ೃ࿔*',
-  tagline: 'Meet at Grand Central, train to the end of the island, everything on foot.',
+  tagline: 'A scenic, beachy & relaxed day trip in Montauk, NY',
   desc: 'Day trip to the end of Long Island. Everyone meets at Grand Central, change at Jamaica, one train out. Lighthouse first, then lunch in the village, the beach right across the road, and the 5:15 train home.',
   transit: [
     { label: 'GRAND CENTRAL → MONTAUK', value: '~3h 20m', maps: 'https://www.google.com/maps/dir/?api=1&origin=Grand+Central+Terminal,+New+York,+NY&destination=Montauk+Station,+Montauk,+NY&travelmode=transit' },
@@ -26,15 +25,41 @@ export const PLAN = {
         'Oldest lighthouse in New York State (1796), commissioned under George Washington. Climb it, walk the bluffs, watch the surf at the Point.',
         'Admission about $15. Give it about 1.5h including the views.',
       ],
-      photos: { kind: 'pair', align: 'right' },
+      photoRows: [
+        {
+          align: 'right',
+          caption: 'Montauk Point',
+          imgs: [
+            { src: 'lighthouse-tall', w: 158, pos: '50%', radius: '4px' },
+            { src: 'lighthouse-wide', w: 315, pos: '50% 4.545%', radius: '4px' },
+          ],
+        },
+      ],
     },
     {
       name: 'Lunch',
       time: '12:30 to 1:45',
       bullets: [
-        "Uber back from the lighthouse to the village: 668 The Gig Shack (surf food and live music, opens noon). Backups: Tacombi La Brisa, John's Drive-In, Goldberg's Bagels.",
+        [
+          'Uber back from the lighthouse to the village: ',
+          { biz: '668 The Gig Shack', n: '1' },
+          ' (surf food and live music, opens noon). Backups: ',
+          { biz: "John's Drive-In", n: '2' },
+          ', ',
+          { biz: "Goldberg's Bagels", n: '3' },
+          '.',
+        ],
       ],
-      photos: { kind: 'pair', align: 'left' },
+      photoRows: [
+        {
+          align: 'left',
+          caption: 'Clam Bar, 668 The Gig Shack',
+          imgs: [
+            { src: 'clam-bar', w: 210, pos: '50%', radius: '4px' },
+            { src: 'gig-shack-interior', w: 315, pos: '50%', radius: '4px' },
+          ],
+        },
+      ],
     },
     {
       name: 'Kirk Park Beach',
@@ -43,10 +68,20 @@ export const PLAN = {
         'The beach is right there: Kirk Park, a 3 minute walk from lunch across Montauk Highway. Wide sand, lifeguards, restrooms.',
         'Beach afternoon. Swim, nap. Leave the sand by 3:30.',
       ],
-      photos: { kind: 'pair', align: 'right' },
+      photoRows: [
+        {
+          align: 'right',
+          caption: 'Kirk Park Beach',
+          imgs: [
+            { src: 'kirk-park-wide', w: 315, pos: '50%', radius: '4px' },
+            { src: 'kirk-park-beach', w: 210, pos: '50%', radius: '4px' },
+          ],
+        },
+      ],
     },
     {
       name: 'Montauk Village',
+      sup: '4',
       time: '3:30 to 5:15',
       bullets: [
         'Leave the sand by 3:30 and wander back through the village: almost two hours for the shops before the train.',
@@ -54,7 +89,24 @@ export const PLAN = {
         'Grab snacks for the ride at Montauk Bake Shoppe (the jelly croissants).',
         'Be at the station by 5 for the 5:15; Grand Central around 8:35.',
       ],
-      photos: { kind: 'pair', align: 'right' },
+      photoRows: [
+        {
+          align: 'right',
+          caption: 'Surf shop',
+          imgs: [
+            { src: 'shops-brick', w: 158, pos: '50%', radius: '4px' },
+            { src: 'shop-interior', w: 158, pos: '50%', radius: '4px' },
+          ],
+        },
+        {
+          align: 'left',
+          caption: 'Ditch Witch, Bake Shoppe',
+          imgs: [
+            { src: 'food-truck', w: 210, pos: '50%', radius: '4px' },
+            { src: 'bake-shoppe', w: 315, pos: '50%', radius: '4px' },
+          ],
+        },
+      ],
     },
   ],
   callout: {
@@ -65,6 +117,12 @@ export const PLAN = {
       'Ubers get scarce and surge on August weekends. Expect a short wait and save a local cab number as backup.',
     ],
   },
+  sources: [
+    { n: '1', text: 'Montauk Point — montaukhistoricalsociety.org', url: 'https://montaukhistoricalsociety.org/montauk-point-lighthouse/' },
+    { n: '2', text: 'Lunch — 668thegigshack.com', url: 'https://668thegigshack.com/' },
+    { n: '3', text: 'Kirk Park Beach — visitmontauk.org', url: 'https://visitmontauk.org/' },
+    { n: '4', text: 'Montauk Village — visitmontauk.org', url: 'https://visitmontauk.org/' },
+  ],
 }
 
 export const FOOTER_TEXT = 'Saturday · August 1 · Montauk'

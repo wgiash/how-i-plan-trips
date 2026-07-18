@@ -52,8 +52,7 @@ body {
 
 body {
   /* Artboard root background: color(display-p3 0.056 0.056 0.056) */
-  background: #0e0e0e;
-  background: color(display-p3 0.056 0.056 0.056);
+  background: #F6F1E6;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -80,8 +79,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(14, 14, 14, 0.6);
-  background: color(display-p3 0.056 0.056 0.056 / 0.6);
+  background: rgba(246, 241, 230, 0.65);
   -webkit-backdrop-filter: blur(64px);
   backdrop-filter: blur(64px);
   display: flex;
@@ -93,6 +91,22 @@ body {
   /* bleed across the page gutters so content never peeks out beside the bar */
   margin-inline: calc(-1 * var(--gutter));
   padding-inline: var(--gutter);
+}
+
+/* film grain: scroll-linked overlay whose opacity is driven by the condense
+   progress, so grain shows only once the bar is frosted over content, not at
+   the top. Sits below the crisp header text via the z-index rule below. */
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+  mix-blend-mode: soft-light;
+}
+.hero > *:not(.hero-grain) {
+  position: relative;
+  z-index: 1;
 }
 
 .h1 {
@@ -141,7 +155,7 @@ body {
 }
 
 .sup:hover {
-  color: #f2f0ef !important;
+  color: #171410 !important;
 }
 
 .source-link {
@@ -149,7 +163,7 @@ body {
 }
 
 .source-link:hover {
-  color: #f2f0ef;
+  color: #171410;
 }
 
 /* Drive stat cells */
@@ -160,7 +174,7 @@ body {
 }
 
 .stat:hover {
-  background: color(display-p3 0.075 0.075 0.075);
+  background: rgba(20, 17, 12, 0.04);
 }
 
 /* ---------- tablet: 24px gutters ---------- */
@@ -222,4 +236,9 @@ body {
     font-size: 20px !important;
     line-height: 26px !important;
   }
+}
+
+/* light mode: the wyze wordmark ships as white gradients; invert to ink */
+.logo > svg:first-of-type {
+  filter: invert(1);
 }
