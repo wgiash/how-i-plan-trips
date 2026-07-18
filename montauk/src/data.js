@@ -38,18 +38,18 @@ export const PLAN = {
     },
     {
       name: 'Kirk Park Beach',
-      time: '2:00 to 4:00',
+      time: '2:00 to 3:30',
       bullets: [
         'The beach is right there: Kirk Park, a 3 minute walk from lunch across Montauk Highway. Wide sand, lifeguards, restrooms.',
-        'Beach afternoon. Swim, nap. Two hours on the sand; leave by 4.',
+        'Beach afternoon. Swim, nap. Leave the sand by 3:30.',
       ],
       photos: { kind: 'pair', align: 'right' },
     },
     {
       name: 'Montauk Village',
-      time: '4:00 to 5:15',
+      time: '3:30 to 5:15',
       bullets: [
-        'Leave the sand by 4 and wander back through the village: a full hour for the shops before the train.',
+        'Leave the sand by 3:30 and wander back through the village: almost two hours for the shops before the train.',
         "Quick browses on the way: White's Drug and Department Store (the Main Street classic), Homeport (books and local goods), Whalebone (soft tees, near the station end).",
         'Grab snacks for the ride at Montauk Bake Shoppe (the jelly croissants).',
         'Be at the station by 5 for the 5:15; Grand Central around 8:35.',
