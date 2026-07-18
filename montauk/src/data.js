@@ -30,19 +30,19 @@ export const PLAN = {
     },
     {
       name: 'Kirk Park Beach',
-      time: '12:30 to 4:30',
+      time: '12:30 to 4:00',
       bullets: [
         'Uber back from the lighthouse to the village for lunch: 668 The Gig Shack (surf food and live music, opens noon). Backups: Tacombi La Brisa, John’s Drive-In, Goldberg’s Bagels.',
         'The beach is right there: Kirk Park, a 3 minute walk from lunch across Montauk Highway. Wide sand, lifeguards, restrooms.',
-        'Beach afternoon. Swim, nap. Leave the sand by 4:30.',
+        'Beach afternoon. Swim, nap. Two hours on the sand; leave by 4.',
       ],
       photos: { kind: 'stack4', align: 'left' },
     },
     {
       name: 'Town',
-      time: '4:30 to 5:15',
+      time: '4:00 to 5:15',
       bullets: [
-        'Leave the sand by 4:30 and walk back through the village to the station (~20 min).',
+        'Leave the sand by 4 and wander back through the village: a full hour for the shops before the train.',
         "Quick browses on the way: White's Drug and Department Store (the Main Street classic), Homeport (books and local goods), Whalebone (soft tees, near the station end).",
         'Grab snacks for the ride at Montauk Bake Shoppe (the jelly croissants).',
         'Be at the station by 5 for the 5:15; Grand Central around 8:35.',
