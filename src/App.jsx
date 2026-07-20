@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'framer-motion'
+import { motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'framer-motion'
 import Lenis from 'lenis'
 import Wordmark from './Wordmark'
 import { OPTIONS, FOOTER_TEXT, L400, L500 } from './data'
@@ -486,54 +486,47 @@ export default function App() {
         </motion.div>
       </motion.header>
 
-      {/* option section + sources — siblings, keyed together per tab */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={option.id}
-          variants={stagger}
-          initial="hidden"
-          animate="show"
-          exit={{ opacity: 0, y: -8, transition: { duration: 0.18 } }}
-          style={{ display: 'flex', flexDirection: 'column', alignSelf: 'stretch' }}
-        >
-        <motion.section
-          variants={sectionStagger}
-          style={{
-            borderBottom: '1px solid #363636',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '36px',
-            paddingTop: '52px',
-            paddingBottom: '52px',
-            alignSelf: 'stretch',
-          }}
-        >
-          <motion.div variants={rise} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <div style={{ color: '#F2F0EF', fontFamily: L500, fontSize: '13px', fontWeight: 500, lineHeight: '16px', letterSpacing: option.labelLetterSpacing ?? undefined }}>
-              {option.label}
-            </div>
-            <h2 className="h2" style={{ color: '#DADADA', letterSpacing: '-0.02em', margin: 0, ...option.titleFont }}>
-              {option.title}
-            </h2>
-            <div style={{ color: '#B3B3B3', fontSize: '17px', lineHeight: '27px', maxWidth: '640px', ...option.descFont }}>
-              {option.desc}
-            </div>
-          </motion.div>
-
-          <DriveStats drive={option.drive} />
-
-          {option.stops.map((stop) => (
-            <Stop key={stop.name} stop={stop} optionId={option.id} />
-          ))}
-
-          <Callout callout={option.callout} />
-        </motion.section>
-
-        <motion.div variants={rise}>
-          <Sources option={option} />
+      {/* option section — keyed so switching tabs remounts and replays the
+          cascade; structurally identical to the Montauk app's section */}
+      <motion.section
+        key={option.id}
+        variants={sectionStagger}
+        initial="hidden"
+        animate="show"
+        style={{
+          borderBottom: '1px solid #363636',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '36px',
+          paddingTop: '52px',
+          paddingBottom: '52px',
+          alignSelf: 'stretch',
+        }}
+      >
+        <motion.div variants={rise} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <div style={{ color: '#F2F0EF', fontFamily: L500, fontSize: '13px', fontWeight: 500, lineHeight: '16px', letterSpacing: option.labelLetterSpacing ?? undefined }}>
+            {option.label}
+          </div>
+          <h2 className="h2" style={{ color: '#DADADA', letterSpacing: '-0.02em', margin: 0, ...option.titleFont }}>
+            {option.title}
+          </h2>
+          <div style={{ color: '#B3B3B3', fontSize: '17px', lineHeight: '27px', maxWidth: '640px', ...option.descFont }}>
+            {option.desc}
+          </div>
         </motion.div>
-        </motion.div>
-      </AnimatePresence>
+
+        <DriveStats drive={option.drive} />
+
+        {option.stops.map((stop) => (
+          <Stop key={stop.name} stop={stop} optionId={option.id} />
+        ))}
+
+        <Callout callout={option.callout} />
+      </motion.section>
+
+      <motion.div key={`${option.id}-sources`} variants={rise} initial="hidden" animate="show">
+        <Sources option={option} />
+      </motion.div>
     </div>
   )
 }
