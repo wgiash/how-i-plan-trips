@@ -3,7 +3,7 @@
 // (fonts, caption styles, image radii, gaps) are reproduced verbatim per option.
 
 export const L500 = '"TWKLausannePan-500", "TWK Lausanne Pan", system-ui, sans-serif'
-export const L400 = '"TWKLausannePan-400", "TWK Lausanne Pan", system-ui, sans-serif'
+export const L300 = '"TWKLausannePan-300", "TWK Lausanne Pan", system-ui, sans-serif'
 export const INTER = '"Inter", system-ui, sans-serif'
 
 // Caption style variants, verbatim from the export (A mixes Inter-italic and
@@ -19,11 +19,11 @@ const capInterItalicLeft = {
 }
 const capLausanneRight = {
   alignSelf: 'stretch', color: '#8A8A8A', display: 'flex', flexWrap: 'wrap',
-  fontFamily: L400, fontSize: '13px', justifyContent: 'end',
+  fontFamily: L300, fontSize: '13px', justifyContent: 'end',
   lineHeight: '16px', textAlign: 'right',
 }
 const capLausanneLeft = {
-  color: '#8A8A8A', fontFamily: L400, fontSize: '13px', lineHeight: '16px',
+  color: '#8A8A8A', fontFamily: L300, fontSize: '13px', lineHeight: '16px',
 }
 
 export const OPTIONS = [
@@ -38,7 +38,7 @@ export const OPTIONS = [
     // hotfix: was Inter 700 from the 1:1 artboard export; unified to Lausanne 500
     titleFont: { fontFamily: L500, fontWeight: 500 },
     desc: 'Two riverside towns, 15 minutes apart. Good food, a bit of art, and views of the river and mountains.',
-    descFont: { fontFamily: L400 },
+    descFont: { fontFamily: L300 },
     drive: [
       { label: 'NYC → BEACON', value: '1h 25m', maps: 'https://www.google.com/maps/dir/New+York,+NY/Beacon,+NY/' },
       { label: 'BEACON → COLD SPRING', value: '15m', maps: 'https://www.google.com/maps/dir/Beacon,+NY/Cold+Spring,+NY/' },
@@ -151,7 +151,7 @@ export const OPTIONS = [
     title: 'Cold Spring + Innisfree / Millbrook',
     titleFont: { fontFamily: L500, fontWeight: 500 }, // B: Lausanne 500
     desc: 'Cold Spring in the morning, then up to the Innisfree garden and Millbrook village. The prettiest mix, and the longest day in the car.',
-    descFont: { fontFamily: L400 },
+    descFont: { fontFamily: L300 },
     drive: [
       { label: 'NYC → COLD SPRING', value: '1h 15m', maps: 'https://www.google.com/maps/dir/New+York,+NY/Cold+Spring,+NY/' },
       { label: 'COLD SPRING → MILLBROOK', value: '50m', maps: 'https://www.google.com/maps/dir/Cold+Spring,+NY/Millbrook,+NY/' },

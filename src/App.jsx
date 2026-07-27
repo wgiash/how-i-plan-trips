@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'framer-motion'
 import Lenis from 'lenis'
 import Wordmark from './Wordmark'
-import { OPTIONS, FOOTER_TEXT, L400, L500 } from './data'
+import { OPTIONS, FOOTER_TEXT, L300, L500 } from './data'
 
 // ---------- motion variants ----------
 
@@ -50,7 +50,7 @@ function Bullet({ children }) {
       <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '9px', width: '14px', flexShrink: 0 }}>
         <div style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#777777', flexShrink: 0 }} />
       </div>
-      <div style={{ color: '#C9C9C9', fontFamily: L400, fontSize: '16px', lineHeight: '26px', flexBasis: '0%', flexGrow: 1 }}>
+      <div style={{ color: '#C9C9C9', fontFamily: L300, fontSize: '16px', lineHeight: '26px', flexBasis: '0%', flexGrow: 1 }}>
         {children}
       </div>
     </div>
@@ -244,7 +244,7 @@ function Callout({ callout }) {
       </div>
       <div style={{ alignItems: 'start', display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
         {callout.lines.map((line) => (
-          <div key={line.slice(0, 24)} style={{ alignSelf: 'stretch', color: '#C9C9C9', fontFamily: L400, fontSize: '15px', lineHeight: '24px' }}>
+          <div key={line.slice(0, 24)} style={{ alignSelf: 'stretch', color: '#C9C9C9', fontFamily: L300, fontSize: '15px', lineHeight: '24px' }}>
             {line}
           </div>
         ))}
@@ -273,7 +273,7 @@ function Sources({ option }) {
               color: '#B3B3B3',
               flexBasis: '0%',
               flexGrow: 1,
-              fontFamily: L400,
+              fontFamily: L300,
               fontSize: '14px',
               lineHeight: '22px',
               textDecoration: 'underline 1px',
@@ -285,7 +285,7 @@ function Sources({ option }) {
         </div>
       ))}
       <div style={{ paddingTop: '12px' }}>
-        <div style={{ color: '#5A5A5A', fontFamily: L400, fontSize: '13px', lineHeight: '16px' }}>{FOOTER_TEXT}</div>
+        <div style={{ color: '#5A5A5A', fontFamily: L300, fontSize: '13px', lineHeight: '16px' }}>{FOOTER_TEXT}</div>
       </div>
     </div>
   )
@@ -480,7 +480,7 @@ export default function App() {
 
         <motion.div variants={fadeUp} style={{ alignSelf: 'stretch' }}>
           <motion.div style={{ maxHeight: collapseMaxH, opacity: collapseOpacity, overflow: 'hidden' }}>
-            <div style={{ color: '#B3B3B3', fontFamily: L400, fontSize: '18px', lineHeight: '28px', maxWidth: '520px' }}>
+            <div style={{ color: '#B3B3B3', fontFamily: L300, fontSize: '18px', lineHeight: '28px', maxWidth: '520px' }}>
               Two ideas for a relaxed day in Hudson Valley.
             </div>
           </motion.div>

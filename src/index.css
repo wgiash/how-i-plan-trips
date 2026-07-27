@@ -1,5 +1,11 @@
 /* Fonts — exact family names used by the Paper export, served locally */
 @font-face {
+  font-family: 'TWKLausannePan-300';
+  src: url('/fonts/TWKLausannePan-300.otf') format('opentype');
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
   font-family: 'TWKLausannePan-400';
   src: url('/fonts/TWKLausannePan-400.ttf') format('truetype');
   font-weight: 400;
@@ -9,6 +15,12 @@
   font-family: 'TWKLausannePan-500';
   src: url('/fonts/TWKLausannePan-500.ttf') format('truetype');
   font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TWK Lausanne Pan';
+  src: url('/fonts/TWKLausannePan-300.otf') format('opentype');
+  font-weight: 300;
   font-display: swap;
 }
 @font-face {
