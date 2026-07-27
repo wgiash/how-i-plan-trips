@@ -2,7 +2,7 @@
 // Photo rows: pairs alternate right → left; sizes/positions are canvas values.
 
 export const L500 = '"TWKLausannePan-500", "TWK Lausanne Pan", system-ui, sans-serif'
-export const L400 = '"TWKLausannePan-400", "TWK Lausanne Pan", system-ui, sans-serif'
+export const L300 = '"TWKLausannePan-300", "TWK Lausanne Pan", system-ui, sans-serif'
 export const INTER = '"Inter", system-ui, sans-serif'
 
 export const PLAN = {

@@ -1,5 +1,11 @@
 /* Fonts — exact family names used by the Paper export, served locally */
 @font-face {
+  font-family: 'TWKLausannePan-300';
+  src: url('/fonts/TWKLausannePan-300.otf') format('opentype');
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
   font-family: 'TWKLausannePan-400';
   src: url('/fonts/TWKLausannePan-400.ttf') format('truetype');
   font-weight: 400;
@@ -9,6 +15,12 @@
   font-family: 'TWKLausannePan-500';
   src: url('/fonts/TWKLausannePan-500.ttf') format('truetype');
   font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TWK Lausanne Pan';
+  src: url('/fonts/TWKLausannePan-300.otf') format('opentype');
+  font-weight: 300;
   font-display: swap;
 }
 @font-face {
@@ -90,7 +102,9 @@ body {
   border-bottom: 1px solid #363636;
   /* bleed across the page gutters so content never peeks out beside the bar */
   margin-inline: calc(-1 * var(--gutter));
-  padding-inline: var(--gutter);
+  /* left gutter only — the mark sits flush to the right edge */
+  padding-left: var(--gutter);
+  padding-right: 0;
 }
 
 .h1 {
@@ -220,9 +234,4 @@ body {
     font-size: 20px !important;
     line-height: 26px !important;
   }
-}
-
-/* light mode: the wyze wordmark ships as white gradients; invert to ink */
-.logo > svg:first-of-type {
-  filter: invert(1);
 }

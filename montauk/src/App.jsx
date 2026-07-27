@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'framer-motion'
 import Lenis from 'lenis'
 import Wordmark from './Wordmark'
-import { PLAN, FOOTER_TEXT, L400, L500, INTER } from './data'
+import { PLAN, FOOTER_TEXT, L300, L500, INTER } from './data'
 
 // ---------- motion variants ----------
 
@@ -60,7 +60,7 @@ function Bullet({ content }) {
       <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '9px', width: '14px', flexShrink: 0 }}>
         <div style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#948B77', flexShrink: 0 }} />
       </div>
-      <div style={{ color: '#443E33', fontFamily: L400, fontSize: '16px', lineHeight: '26px', flexBasis: '0%', flexGrow: 1 }}>
+      <div style={{ color: '#443E33', fontFamily: L300, fontSize: '16px', lineHeight: '26px', flexBasis: '0%', flexGrow: 1 }}>
         {renderBullet(content)}
       </div>
     </div>
@@ -186,7 +186,7 @@ function Callout({ callout }) {
       </div>
       <div style={{ alignItems: 'start', display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
         {callout.lines.map((line) => (
-          <div key={line.slice(0, 24)} style={{ alignSelf: 'stretch', color: '#443E33', fontFamily: L400, fontSize: '15px', lineHeight: '24px' }}>
+          <div key={line.slice(0, 24)} style={{ alignSelf: 'stretch', color: '#443E33', fontFamily: L300, fontSize: '15px', lineHeight: '24px' }}>
             {line}
           </div>
         ))}
@@ -297,19 +297,11 @@ export default function App() {
         variants={stagger}
         initial="hidden"
         animate="show"
-        style={{ gap: heroGap, paddingTop: heroPadTop, paddingBottom: heroPadBottom, marginInline: heroMarginInline, paddingInline: heroPaddingInline }}
+        style={{ gap: heroGap, paddingTop: heroPadTop, paddingBottom: heroPadBottom, marginInline: heroMarginInline, paddingLeft: heroPaddingInline, paddingRight: 0 }}
       >
         <motion.div variants={fadeUp}>
           <motion.div className="logo" style={{ maxHeight: collapseMaxH, opacity: collapseOpacity, overflow: 'hidden', alignItems: 'start', display: 'flex', flexDirection: 'column', gap: '8px', justifyContent: 'center' }}>
             <Wordmark />
-            <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
-              <svg xmlns="http://www.w3.org/2000/svg" height="13" viewBox="0 -960 520 520" width="13" style={{ flexShrink: 0 }}>
-                <path d="M132.502-494.168q-23.611 0-40.143-16.407Q75.833-526.982 75.833-550.42v-298.745q0-23.611 16.526-40.143Q108.891-905.835 132.502-905.835h231.666v331.669H132.502q-10.043 0-17.105 6.813Q108.334-560.533 108.334-550.453q0 10.075 7.063 16.933Q122.46-526.668 132.502-526.668H411.667v-335.834h32.5v368.334H132.502Zm55.831-112.499h143.335V-873.335H188.333v266.669Zm-32.5 0V-873.335h-23.331q-10.276 0-17.219 7.063Q108.334-859.208 108.334-849.165v248.787q5.622-2.665 11.494-4.48 5.872-1.809 12.675-1.809h23.33ZM108.334-873.335v272.957V-873.335Z" fill="#5E574A" />
-              </svg>
-              <div style={{ color: '#5E574A', fontFamily: L500, fontSize: '11px', fontWeight: 500, lineHeight: '14px', textAlign: 'center' }}>
-                Notes
-              </div>
-            </div>
           </motion.div>
         </motion.div>
 
@@ -334,7 +326,7 @@ export default function App() {
 
         <motion.div variants={fadeUp} style={{ alignSelf: 'stretch' }}>
           <motion.div style={{ maxHeight: collapseMaxH, opacity: collapseOpacity, overflow: 'hidden' }}>
-            <div style={{ color: '#5E574A', fontFamily: L400, fontSize: '18px', lineHeight: '28px', maxWidth: '520px' }}>
+            <div style={{ color: '#5E574A', fontFamily: L300, fontSize: '18px', lineHeight: '28px', maxWidth: '520px' }}>
               {PLAN.tagline}
             </div>
           </motion.div>
@@ -359,7 +351,7 @@ export default function App() {
           <div style={{ color: '#171410', fontFamily: L500, fontSize: '13px', fontWeight: 500, lineHeight: '16px', letterSpacing: '0.02em' }}>
             THE PLAN
           </div>
-          <div style={{ color: '#5E574A', fontFamily: L400, fontSize: '17px', lineHeight: '27px', maxWidth: '640px' }}>
+          <div style={{ color: '#5E574A', fontFamily: L300, fontSize: '17px', lineHeight: '27px', maxWidth: '640px' }}>
             {PLAN.desc}
           </div>
         </motion.div>
@@ -384,14 +376,14 @@ export default function App() {
             href={s.url}
             target="_blank"
             rel="noreferrer"
-            style={{ color: '#6B6454', fontFamily: L400, fontSize: '14px', lineHeight: '22px', textDecoration: 'none' }}
+            style={{ color: '#6B6454', fontFamily: L300, fontSize: '14px', lineHeight: '22px', textDecoration: 'none' }}
           >
             <sup style={{ color: '#948B77', fontFamily: L500, fontSize: '10px', fontWeight: 500, marginRight: '5px' }}>{s.n}</sup>
             <span style={{ textDecoration: 'underline 1px', textUnderlinePosition: 'from-font' }}>{s.text}</span>
           </a>
         ))}
         <div style={{ paddingTop: '12px' }}>
-          <div style={{ color: '#A69D89', fontFamily: L400, fontSize: '13px', lineHeight: '16px' }}>{FOOTER_TEXT}</div>
+          <div style={{ color: '#A69D89', fontFamily: L300, fontSize: '13px', lineHeight: '16px' }}>{FOOTER_TEXT}</div>
         </div>
       </div>
     </div>
