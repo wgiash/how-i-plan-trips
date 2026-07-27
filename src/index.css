@@ -92,7 +92,9 @@ body {
   border-bottom: 1px solid #363636;
   /* bleed across the page gutters so content never peeks out beside the bar */
   margin-inline: calc(-1 * var(--gutter));
-  padding-inline: var(--gutter);
+  /* left gutter only — the mark sits flush to the right edge */
+  padding-left: var(--gutter);
+  padding-right: 0;
 }
 
 .h1 {

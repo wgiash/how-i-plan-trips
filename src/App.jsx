@@ -451,21 +451,13 @@ export default function App() {
         variants={stagger}
         initial="hidden"
         animate="show"
-        style={{ gap: heroGap, paddingTop: heroPadTop, paddingBottom: heroPadBottom, marginInline: heroMarginInline, paddingInline: heroPaddingInline }}
+        style={{ gap: heroGap, paddingTop: heroPadTop, paddingBottom: heroPadBottom, marginInline: heroMarginInline, paddingLeft: heroPaddingInline, paddingRight: 0 }}
       >
         <motion.div variants={fadeUp}>
           <motion.div className="logo" style={{ maxHeight: collapseMaxH, opacity: collapseOpacity, overflow: 'hidden', alignItems: 'start', display: 'flex', flexDirection: 'column', gap: '8px', justifyContent: 'center' }}>
             <Wordmark />
-          <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
-            <svg xmlns="http://www.w3.org/2000/svg" height="13" viewBox="0 -960 520 520" width="13" style={{ flexShrink: 0 }}>
-              <path d="M132.502-494.168q-23.611 0-40.143-16.407Q75.833-526.982 75.833-550.42v-298.745q0-23.611 16.526-40.143Q108.891-905.835 132.502-905.835h231.666v331.669H132.502q-10.043 0-17.105 6.813Q108.334-560.533 108.334-550.453q0 10.075 7.063 16.933Q122.46-526.668 132.502-526.668H411.667v-335.834h32.5v368.334H132.502Zm55.831-112.499h143.335V-873.335H188.333v266.669Zm-32.5 0V-873.335h-23.331q-10.276 0-17.219 7.063Q108.334-859.208 108.334-849.165v248.787q5.622-2.665 11.494-4.48 5.872-1.809 12.675-1.809h23.33ZM108.334-873.335v272.957V-873.335Z" fill="#B3B3B3" />
-            </svg>
-            <div style={{ color: '#B3B3B3', fontFamily: L500, fontSize: '11px', fontWeight: 500, lineHeight: '14px', textAlign: 'center' }}>
-              Notes
-            </div>
-          </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
 
         <motion.div variants={fadeUp} style={{ alignSelf: 'stretch' }}>
           <motion.div style={{ maxHeight: collapseMaxH, opacity: collapseOpacity, overflow: 'hidden' }}>
