@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'framer-motion'
+import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'framer-motion'
 import Lenis from 'lenis'
 import Wordmark from './Wordmark'
 import { OPTIONS, FOOTER_TEXT, L400, L500 } from './data'
@@ -18,14 +18,26 @@ const fadeUp = {
 
 // The option blocks cascade in one at a time, starting just after the hero so it
 // reads as a continuous top-down flow (matches the Montauk app's load feel).
+// `custom` is true on a tab switch: same cascade, but tightened up. The load
+// timing is a curtain-raise for a page you haven't seen; replaying it on every
+// toggle leaves the body blank for a third of a second and takes ~1.4s to fill.
 const sectionStagger = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.11, delayChildren: 0.32 } },
+  show: (fast) => ({
+    transition: { staggerChildren: fast ? 0.045 : 0.11, delayChildren: fast ? 0 : 0.32 },
+  }),
+  out: { transition: { staggerChildren: 0 } },
 }
 
 const rise = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.1, 0, 0.1, 1] } },
+  show: (fast) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: fast ? 0.34 : 0.55, ease: [0.1, 0, 0.1, 1] },
+  }),
+  // the outgoing option lifts away while the new one is already rising in
+  out: { opacity: 0, y: -10, transition: { duration: 0.16, ease: [0.4, 0, 1, 1] } },
 }
 
 const spring = { type: 'spring', stiffness: 400, damping: 34 }
@@ -342,6 +354,9 @@ function Chip({ option, active, onClick, idBase = 'hero', dep }) {
 
 export default function App() {
   const [tab, setTab] = useState(0)
+  // false until the reader touches a chip, so the first paint keeps the slow
+  // load cascade and every switch after it gets the quick one
+  const [switched, setSwitched] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [vw, setVw] = useState(1280)
   const option = OPTIONS[tab]
@@ -481,52 +496,77 @@ export default function App() {
 
         <motion.div variants={fadeUp} className="chips" style={{ alignItems: 'start', alignSelf: 'stretch', display: 'flex', gap: '16px' }}>
           {OPTIONS.map((o, i) => (
-            <Chip key={o.id} option={o} active={i === tab} onClick={() => setTab(i)} dep={tab} />
+            <Chip
+              key={o.id}
+              option={o}
+              active={i === tab}
+              onClick={() => {
+                if (i === tab) return
+                setSwitched(true)
+                setTab(i)
+              }}
+              dep={tab}
+            />
           ))}
         </motion.div>
       </motion.header>
 
       {/* option section — keyed so switching tabs remounts and replays the
-          cascade; structurally identical to the Montauk app's section */}
-      <motion.section
-        key={option.id}
-        variants={sectionStagger}
-        initial="hidden"
-        animate="show"
-        style={{
-          borderBottom: '1px solid #363636',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '36px',
-          paddingTop: '52px',
-          paddingBottom: '52px',
-          alignSelf: 'stretch',
-        }}
-      >
-        <motion.div variants={rise} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-          <div style={{ color: '#F2F0EF', fontFamily: L500, fontSize: '13px', fontWeight: 500, lineHeight: '16px', letterSpacing: option.labelLetterSpacing ?? undefined }}>
-            {option.label}
-          </div>
-          <h2 className="h2" style={{ color: '#DADADA', letterSpacing: '-0.02em', margin: 0, ...option.titleFont }}>
-            {option.title}
-          </h2>
-          <div style={{ color: '#B3B3B3', fontSize: '17px', lineHeight: '27px', maxWidth: '640px', ...option.descFont }}>
-            {option.desc}
-          </div>
+          cascade; structurally identical to the Montauk app's section.
+          popLayout pulls the outgoing option out of flow immediately, so the
+          incoming one starts rising into place while the old one fades. */}
+      <AnimatePresence mode="popLayout">
+        <motion.section
+          key={option.id}
+          custom={switched}
+          variants={sectionStagger}
+          initial="hidden"
+          animate="show"
+          exit="out"
+          style={{
+            borderBottom: '1px solid #363636',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '36px',
+            paddingTop: '52px',
+            paddingBottom: '52px',
+            alignSelf: 'stretch',
+          }}
+        >
+          <motion.div variants={rise} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <div style={{ color: '#F2F0EF', fontFamily: L500, fontSize: '13px', fontWeight: 500, lineHeight: '16px', letterSpacing: option.labelLetterSpacing ?? undefined }}>
+              {option.label}
+            </div>
+            <h2 className="h2" style={{ color: '#DADADA', letterSpacing: '-0.02em', margin: 0, ...option.titleFont }}>
+              {option.title}
+            </h2>
+            <div style={{ color: '#B3B3B3', fontSize: '17px', lineHeight: '27px', maxWidth: '640px', ...option.descFont }}>
+              {option.desc}
+            </div>
+          </motion.div>
+
+          <DriveStats drive={option.drive} />
+
+          {option.stops.map((stop) => (
+            <Stop key={stop.name} stop={stop} optionId={option.id} />
+          ))}
+
+          <Callout callout={option.callout} />
+        </motion.section>
+      </AnimatePresence>
+
+      <AnimatePresence mode="popLayout">
+        <motion.div
+          key={`${option.id}-sources`}
+          custom={switched}
+          variants={rise}
+          initial="hidden"
+          animate="show"
+          exit="out"
+        >
+          <Sources option={option} />
         </motion.div>
-
-        <DriveStats drive={option.drive} />
-
-        {option.stops.map((stop) => (
-          <Stop key={stop.name} stop={stop} optionId={option.id} />
-        ))}
-
-        <Callout callout={option.callout} />
-      </motion.section>
-
-      <motion.div key={`${option.id}-sources`} variants={rise} initial="hidden" animate="show">
-        <Sources option={option} />
-      </motion.div>
+      </AnimatePresence>
     </div>
   )
 }
