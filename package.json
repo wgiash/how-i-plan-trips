@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "rm -rf dist && vite build --outDir dist/hudson && cd montauk && npm install && vite build --outDir ../dist/montauk && cd .. && node scripts/finish-dist.mjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },

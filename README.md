@@ -2,12 +2,13 @@
 
 Trip plans built as small one-page React apps and shared with friends.
 
-**Hudson Valley Roadtrip** — https://hudson-roadtrip.vercel.app
-**Montauk Trip** — https://montauk-inky.vercel.app
+One site — **https://roadtrips.vercel.app**
+**Hudson Valley** — https://roadtrips.vercel.app/hudson
+**Montauk** — https://roadtrips.vercel.app/montauk
 
 ## The trips
 
-- **Hudson Valley** (`/`) — two day-trip options (Beacon + Cold Spring, or Cold Spring + Innisfree/Millbrook) you can tab between, with drive times that open the real Google Maps route.
+- **Hudson Valley** (`/hudson`) — two day-trip options (Beacon + Cold Spring, or Cold Spring + Innisfree/Millbrook) you can tab between, with drive times that open the real Google Maps route.
 - **Montauk** (`/montauk`) — a single train-based day: lighthouse, lunch, Kirk Park Beach, then the village before the 5:15 home. Light cream theme.
 
 Both share the same format: timed stops, photo pairs that alternate sides, superscripted sources, and a scroll-condensing header.
