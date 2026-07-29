@@ -23,12 +23,12 @@ writeFileSync('dist/index.html', `<!doctype html>
     <meta property="og:title" content="Roadtrips" />
     <meta property="og:description" content="Trip plans built as small one-page apps." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://roadtrips.vercel.app" />
-    <meta property="og:image" content="https://roadtrips.vercel.app/og.png" />
+    <meta property="og:url" content="https://hudson-roadtrip.vercel.app" />
+    <meta property="og:image" content="https://hudson-roadtrip.vercel.app/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://roadtrips.vercel.app/og.png" />
+    <meta name="twitter:image" content="https://hudson-roadtrip.vercel.app/og.png" />
     <style>
       body { margin: 0; min-height: 100vh; display: grid; place-content: center; gap: 28px;
              font-family: 'TWK Lausanne Pan', Inter, system-ui, sans-serif; color: #eee; }

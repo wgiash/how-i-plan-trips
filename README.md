@@ -2,9 +2,9 @@
 
 Trip plans built as small one-page React apps and shared with friends.
 
-One site — **https://roadtrips.vercel.app**
-**Hudson Valley** — https://roadtrips.vercel.app/hudson
-**Montauk** — https://roadtrips.vercel.app/montauk
+One site — **https://hudson-roadtrip.vercel.app**
+**Hudson Valley** — https://hudson-roadtrip.vercel.app/hudson
+**Montauk** — https://hudson-roadtrip.vercel.app/montauk
 
 ## The trips
 
