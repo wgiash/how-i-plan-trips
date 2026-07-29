@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'framer-motion'
 import Lenis from 'lenis'
 import Wordmark from './Wordmark'
@@ -41,6 +41,10 @@ const rise = {
 }
 
 const spring = { type: 'spring', stiffness: 400, damping: 34 }
+
+// the h1 renders this as two spans (so it can break), but it measures as one
+// line — keep them in sync
+const TITLE_TEXT = 'Hudson Valley Roadtrip'
 
 // ---------- atoms ----------
 
@@ -406,13 +410,31 @@ export default function App() {
   const raw = useTransform(scrollY, [10, 80], [0, 1])
   const p = useSpring(raw, { stiffness: 380, damping: 36, mass: 0.5 })
 
+  // Measure the real rendered title width at a 100px reference size; ratio =
+  // px of line per px of font size. The old hardcoded ≈11 was a guess that was
+  // never corrected, so the h1 was sized against fallback metrics on load and
+  // then visibly jumped when the webfont arrived — which is what made the
+  // entrance look unsettled next to the Montauk app's clean scale.
+  const [titleRatio, setTitleRatio] = useState(11)
+  const measRef = useRef(null)
+  // useLayoutEffect: measure before first paint so the entrance animation
+  // starts at the final size instead of resizing mid-load. Re-measured once
+  // fonts settle, since the fallback's metrics are not the real ones.
+  useLayoutEffect(() => {
+    const measure = () => {
+      if (measRef.current) setTitleRatio(measRef.current.offsetWidth / 100)
+    }
+    measure()
+    document.fonts?.ready?.then(measure)
+  }, [])
+
   // Fluid expanded title: shrink toward the largest size that still fits one
-  // line at this viewport (≈11px of line width per px of font size), capped at
-  // the design size. Only if even 28px can't fit does the two-line break kick in.
+  // line at this viewport, capped at the design size. Only if even 28px can't fit does the two-line break kick in.
   // gutters: 16 mobile / 24 tablet / 96 desktop (mirrors the CSS --gutter)
   const gutter = vw <= 640 ? 16 : vw <= 1024 ? 24 : 96
   const contentW = vw - 2 * gutter
-  const fitSize = Math.floor(contentW / 11)
+  // small inset so the last glyph never kisses the edge
+  const fitSize = Math.floor((contentW - 10) / titleRatio)
   const expandedH1 = Math.min(isMobile ? 38 : 54, Math.max(28, fitSize))
   const h1Size = useTransform(p, [0, 1], [`${expandedH1}px`, isMobile ? '24px' : '32px'])
   const h1Line = useTransform(p, [0, 1], [`${Math.round(expandedH1 * 1.075)}px`, isMobile ? '30px' : '38px'])
@@ -445,6 +467,15 @@ export default function App() {
 
   return (
     <div className="page">
+      {/* offscreen measurer for the title's true rendered width — must match
+          the h1's family, weight and tracking exactly or the ratio lies */}
+      <div
+        ref={measRef}
+        aria-hidden="true"
+        style={{ position: 'absolute', left: '-99999px', top: 0, visibility: 'hidden', pointerEvents: 'none', whiteSpace: 'nowrap', fontFamily: L500, fontWeight: 500, fontSize: '100px', letterSpacing: '-0.02em' }}
+      >
+        {TITLE_TEXT}
+      </div>
       {/* hero: sticky; condenses continuously with scroll */}
       <motion.header
         className="hero"

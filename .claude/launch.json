@@ -1,12 +1,6 @@
 {
   "version": "0.0.1",
   "configurations": [
-    {
-      "name": "hudson-roadtrip",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "cwd": "/Users/wayeezgiash/code/hudson-roadtrip",
-      "port": 5173
-    }
+    { "name": "hudson", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev", "--", "--port", "5180", "--strictPort"], "port": 5180 }
   ]
 }

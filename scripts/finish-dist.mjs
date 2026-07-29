@@ -7,6 +7,7 @@ if (existsSync('public/fonts')) cpSync('public/fonts', 'dist/fonts', { recursive
 if (existsSync('montauk/public/fonts')) cpSync('montauk/public/fonts', 'dist/fonts', { recursive: true })
 cpSync('public/favicon.svg', 'dist/favicon.svg')
 cpSync('site/og.png', 'dist/og.png')
+cpSync('site/og.png', 'dist/og-v3.png')
 
 writeFileSync('dist/index.html', `<!doctype html>
 <html lang="en" style="background:#0e0e0e">
@@ -24,11 +25,11 @@ writeFileSync('dist/index.html', `<!doctype html>
     <meta property="og:description" content="Trip plans built as small one-page apps." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://hudson-roadtrip.vercel.app" />
-    <meta property="og:image" content="https://hudson-roadtrip.vercel.app/og.png" />
+    <meta property="og:image" content="https://hudson-roadtrip.vercel.app/og-v3.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://hudson-roadtrip.vercel.app/og.png" />
+    <meta name="twitter:image" content="https://hudson-roadtrip.vercel.app/og-v3.png" />
     <style>
       body { margin: 0; min-height: 100vh; display: grid; place-content: center; gap: 28px;
              font-family: 'TWK Lausanne Pan', Inter, system-ui, sans-serif; color: #eee; }
