@@ -92,8 +92,10 @@ body {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(14, 14, 14, 0.6);
-  background: color(display-p3 0.056 0.056 0.056 / 0.6);
+  /* solid enough that scrolled content reads as behind the bar, not through
+     it — the blur still softens what little shows at the edges */
+  background: rgba(14, 14, 14, 0.92);
+  background: color(display-p3 0.056 0.056 0.056 / 0.92);
   -webkit-backdrop-filter: blur(64px);
   backdrop-filter: blur(64px);
   display: flex;
