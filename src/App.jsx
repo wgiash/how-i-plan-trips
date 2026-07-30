@@ -68,7 +68,12 @@ function Photo({ img }) {
       whileHover={{ scale: 1.015 }}
       transition={spring}
       style={{
-        backgroundImage: `url(/img/${img.src}.jpg)`,
+        // BASE_URL, not a bare /img/: this string is built at runtime, so
+        // Vite can't rewrite it the way it rewrites static paths. A
+        // root-absolute path was correct when the app owned the domain
+        // root; under the multi-app build it resolves above the app's
+        // own base and 404s.
+        backgroundImage: `url(${import.meta.env.BASE_URL}img/${img.src}.jpg)`,
         backgroundPosition: img.pos,
         backgroundSize: 'cover',
         width: `calc(${img.w}px * var(--photo-scale, 1))`,
