@@ -284,6 +284,10 @@ export default function App() {
   // viewport term from 100vw, so no React state can ever be stale mid-scroll.
   const heroMarginInline = useTransform(p, (v) => `calc(-1 * var(--gutter) - ${v.toFixed(4)} * ((100vw - min(100vw, 803px)) / 2))`)
   const heroPaddingInline = useTransform(p, (v) => `calc(var(--gutter) + ${v.toFixed(4)} * ((100vw - min(100vw, 803px)) / 2))`)
+  // Below desktop the bar has no room to spare and the title is sized to fill
+  // the measure, so a zero right pad ran it flush to the screen edge. Mirror
+  // the left gutter there; desktop keeps the full-bleed condense.
+  const heroPadRight = vw <= 1024 ? heroPaddingInline : 0
 
   const spring = { type: 'spring', stiffness: 400, damping: 34 }
 
@@ -302,7 +306,7 @@ export default function App() {
         variants={stagger}
         initial="hidden"
         animate="show"
-        style={{ gap: heroGap, paddingTop: heroPadTop, paddingBottom: heroPadBottom, marginInline: heroMarginInline, paddingLeft: heroPaddingInline, paddingRight: 0 }}
+        style={{ gap: heroGap, paddingTop: heroPadTop, paddingBottom: heroPadBottom, marginInline: heroMarginInline, paddingLeft: heroPaddingInline, paddingRight: heroPadRight }}
       >
         <motion.div variants={fadeUp}>
           <motion.div className="logo" style={{ maxHeight: collapseMaxH, opacity: collapseOpacity, overflow: 'hidden', alignItems: 'start', display: 'flex', flexDirection: 'column', gap: '8px', justifyContent: 'center' }}>
